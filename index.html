@@ -9,9 +9,19 @@
     <title>To Be Named...</title>
 </head>
 <body>
-    <input type="text" placeholder="Search for Books...">
-    <button onclick="SearchBook()">Search</button>
-    <div id="content"></div>
+    <!-- Search Bar -->
+    <section class="search">
+        <div id = "search_bar">
+            <input type="text" placeholder="Search for Books...">
+            <button onclick="SearchBook()">Search</button>
+        </div> 
+    </section>
+
+    <!-- Search Results -->
+    <section class="results">
+        <div id="content"></div>
+    </section>
+
     <script src="./axios/dist/axios.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="./app.js"></script>
