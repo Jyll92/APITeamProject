@@ -47,13 +47,13 @@ async function SearchBook() {
       if (searchResults[i].cover_edition_key == undefined) {
         // If cover was undefined, we insert a broken image (or placeholder cover to be added later)
 
-        contentDiv.insertAdjacentHTML(`beforeend`, `<div class="result">
-        <h3 class="resultTitle">${searchResults[i].title}</h3>
-        <h4 class="resultAuthor">Author: ${searchResults[i].author_name}</h4>
-        <div class="coverContainer">
-        <img class="resultCover" src="#" alt="Cover of ${searchResults[i].title} is missing">
-        </div>
-        </div>`);
+        // contentDiv.insertAdjacentHTML(`beforeend`, `<div class="result">
+        // <h3 class="resultTitle">${searchResults[i].title}</h3>
+        // <h4 class="resultAuthor">Author: ${searchResults[i].author_name}</h4>
+        // <div class="coverContainer">
+        // <img class="resultCover" src="#" alt="Cover of ${searchResults[i].title} is missing">
+        // </div>
+        // </div>`);
 
         // Else we add the book with its cover.
       } else {
