@@ -1,39 +1,49 @@
-let fruitArea = document.querySelector(`#FruitArea`);
+// Declaring Variables
+const URL = `http://openlibrary.org/search.json?q=`;
+const searchButton = document.querySelector(`button`);
+const searchInput = document.querySelector(`input`);
+const contentDiv = document.querySelector(`#content`);
+let searchTerms;
+let searchResults;
 
-// temp working with cors-anywhere proxy
-axios.get(`https://cors-anywhere.herokuapp.com/https://www.fruityvice.com/api/fruit/all`)
-  .then(res => {
-    console.log(`Fruit Grab was Successful`);
-    let fruits = res.data;
-    console.log(res.data);
+// Function that runs via button onclick="SearchBook()"
+async function SearchBook() {
+  // Sets searchTerms to the value of searchInput
+  // searchInput was set to our text input field, the user input is the value
+  searchTerms = searchInput.value;
+
+  // try {this code} catch(errors){display errors for troubleshooting}
+
+  try {
+    // Try searching by combining URL with the user set searchTerms
+    searchResults = await axios.get(`${URL}${searchTerms}`);
     
-    for (let i = 0; i < fruits.length; i++) {
-        let name = fruits[i].name;
-        let genus = fruits[i].genus;
-        let family = fruits[i].family;
-        let order = fruits[i].order;
-        let fruitDiv = document.createElement(`div`);
-        let fruitName = document.createElement(`h2`);
-        let fruitGenus = document.createElement(`h3`);
-        let fruitFamily = document.createElement(`h4`);
-        let fruitOrder = document.createElement(`h5`);
-        fruitName.innerText = name;
-        fruitGenus.innerText = `Genus: ${genus}`;
-        fruitDiv.classList.add(`${genus}`)
-        fruitFamily.innerText = `Family: ${family}`;
-        fruitDiv.classList.add(`${family}`)
-        fruitOrder.innerText = `Order: ${order}`;
-        fruitDiv.classList.add(`${order}`)
-        fruitDiv.setAttribute(`id`, `${name}`);
-        fruitArea.appendChild(fruitDiv);
-        fruitDiv.appendChild(fruitName);
-        fruitDiv.appendChild(fruitGenus);
-        fruitDiv.appendChild(fruitFamily);
-        fruitDiv.appendChild(fruitOrder);
-    };
+    console.log(searchResults.data);
+    // set searchResults to searchResults.data, because thats how axios gets us back our info. This just makes it easier to work with. 
+    // also added .docs, because when I ran a console.log(searchResults.data), I observed the results are in an array, under the key of "docs"
+    searchResults = searchResults.data.docs;
+    
 
-  })
-  .catch(err => {
-    console.log(`Fruit Grab was NOT Successful`);
-    console.log(err);
-  });
+    // Now we have to go through the array and display each result
+    // Target each result of the array with a for loop
+    for (let i = 0; i < searchResults.length; i++) {
+      // inserAdjacentHTML allows us to add html to the page.
+      // by using contentDiv.insertAdjacentHTML I add desired html to the page. In this case I target `beforeend` to insert each new iteration before the ending tag.
+      contentDiv.insertAdjacentHTML(`beforeend`, `<div id="r${i}">
+      <h3 class="resultTitle">${searchResults[i].title}</h3>
+      <h4 class="resultAuthor">${searchResults[i].author_name}</h4>
+      <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${searchResults[i].cover_edition_key}.jpg" alt="Cover of ${searchResults[i].title}">
+      </div>`);
+      // The template literal allows me to add the html and text at once 
+    }
+    
+    
+    
+
+  } catch(err) {
+    // This is meant to tell us what went wrong, if the code in our try{} doesn't run successfully.
+    console.log(`Search Failed: ${err}`);
+  }
+  
+
+}

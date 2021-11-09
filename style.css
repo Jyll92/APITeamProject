@@ -3,12 +3,7 @@
     margin: 0;
     padding: 0;
 }
-#FruitArea {
-    display: flex;
-    flex-wrap: wrap;
-}
-#FruitArea div {
-    width: 20vw;
-    text-align: center;
-    padding: 20px;
+.resultCover {
+    max-width: 250px;
+    max-height: 250px;
 }
