@@ -1,5 +1,5 @@
 // Declaring Variables
-const URL = `http://openlibrary.org/search.json?q=`;
+const URL = `https://openlibrary.org/search.json?q=`;
 const searchButton = document.querySelector(`button`);
 const searchInput = document.querySelector(`input`);
 const contentDiv = document.querySelector(`#content`);
