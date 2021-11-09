@@ -3,7 +3,11 @@
     margin: 0;
     padding: 0;
 }
+.coverContainer {
+    max-height: 300px;
+    max-width: 150px;
+}
 .resultCover {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 100%;
+    max-height: 100%
 }
