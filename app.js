@@ -26,10 +26,11 @@ async function SearchBook() {
 
     // Now we have to go through the array and display each result
     // Target each result of the array with a for loop
-    for (let i = 0; i < searchResults.length; i++) {
+    // added && i < 20 to not display more than 20 results for now.
+    for (let i = 0; i < searchResults.length && i < 20; i++) {
       // inserAdjacentHTML allows us to add html to the page.
       // by using contentDiv.insertAdjacentHTML I add desired html to the page. In this case I target `beforeend` to insert each new iteration before the ending tag.
-      contentDiv.insertAdjacentHTML(`beforeend`, `<div id="r${i}">
+      contentDiv.insertAdjacentHTML(`beforeend`, `<div id="r${i + 1}">
       <h3 class="resultTitle">${searchResults[i].title}</h3>
       <h4 class="resultAuthor">${searchResults[i].author_name}</h4>
       <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${searchResults[i].cover_edition_key}.jpg" alt="Cover of ${searchResults[i].title}">
