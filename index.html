@@ -5,31 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Team Four API Project">
-    <link rel="stylesheet" href="./style.css">
-    <title>To Be Named...</title>
+    <link rel="stylesheet" href="style.css">
+    <title>The Book Nook</title>
 </head>
 <body>
     <!-- Header -->
-    <section id="header"></section>
+    <section class="header">
+    <img src="book 22.png" alt="" srcset="">
+</section>
     
+
     <!-- Search Bar -->
     <section class="search">
-        <div id = "search_bar">
-            <input type="text" placeholder="Search for Books...">
-            <button onclick="SearchBook()">Search</button>
-        </div> 
+        <div id = "search-bar">
+            <form id= "form"> 
+                <input type= "search" id="search" placeholder="Search By:  Title, Author, Subject">
+                <button onclick="SearchBook()">Search</button>
+              </form>
     </section>
-
-    <!-- Search Results -->
-    <section class="results">
-        <div id="content"></div>
+    
+    <!-- Search Results Displayed Here -->
+    <section class="Results">
+        <div id="content">
+            Search Results
+        </div>
     </section>
 
     <!-- Footer -->
+    <section id="footer">
+
+    </section>
     <section id="footer"></section>
 
     <script src="./axios/dist/axios.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="./app.js"></script>
 </body>
+</html> 
 </html>
