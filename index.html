@@ -8,21 +8,41 @@
     <!-- CSS Links -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
-    <title>To Be Named...</title>
+    <title>The Book Nook</title>
 </head>
 <body>
     <!-- Header -->
-    <section id="header">
+    <section id="header top">
         <img src="Images/bookNook.png" alt="Book Nook header image">
     </section>
+
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand fs-6" href="#top">The Book Nook</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">1st Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">2nd Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">3rd Link</a>
+              </li>
+            </ul>
+            <div id = "search_bar">
+                <input type="text" placeholder="Search for Books...">
+                <button onclick="SearchBook()">Search</button>
+            </div>
+          </div>
+        </div>
+      </nav>
     
-    <!-- Search Bar -->
-    <section class="search">
-        <div id = "search_bar">
-            <input type="text" placeholder="Search for Books...">
-            <button onclick="SearchBook()">Search</button>
-        </div> 
-    </section>
 
     <!-- Search Results -->
     <section class="results">
