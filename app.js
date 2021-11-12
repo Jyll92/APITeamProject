@@ -28,6 +28,12 @@ getSubject(subjects.f, `API1`);
 // getSubject(subjects.m, `API2`);
 // getSubject(subjects.h, `API3`);
 
+searchInput.addEventListener(`keyup`, (event) => {
+  if (event.keyCode === 13) {
+    SearchBook();
+}
+})
+
 // Function that runs via button onclick="SearchBook()"
 async function SearchBook() {
   for (filledDiv of autoFilled) {
