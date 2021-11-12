@@ -8,8 +8,8 @@ const contentDiv = document.querySelector(`#search_field`);
 const subjectResultLimit = 8;
 
 const subjects = {
-  r: `romance`, 
-  f: `fantasy`, 
+  r: `romance`,
+  f: `fantasy`,
   sf: `science_fiction`,
   h: `horror`,
   hf: `historical_fiction`,
@@ -21,7 +21,6 @@ const subjects = {
 
 let searchTerms;
 let searchResults;
-
 
 // Run Function to fill our auto-divs
 getSubject(subjects.f, `API1`);
@@ -65,7 +64,7 @@ async function SearchBook() {
     // added && i < 20 to also not display more than 20 results at once.
     for (let i = 0; i < searchResults.length && i < 20; i++) {
       // First, I check if it has an associated cover or not, to know if I can display the image
-      if ((searchResults[i].cover_edition_key != undefined)) {
+      if (searchResults[i].cover_edition_key != undefined) {
         // inserAdjacentHTML allows us to add html to the page.
         // by using contentDiv.insertAdjacentHTML we can add desired html to the page. In this case we target `beforeend` to insert each new iteration before the ending tag.
         contentDiv.insertAdjacentHTML(
@@ -88,9 +87,11 @@ async function SearchBook() {
 }
 
 // Lets us fill a div by calling subject we want and the target container
-async function getSubject(subject, targetDiv){
+async function getSubject(subject, targetDiv) {
   try {
-    subjectResults = await axios.get(`${subjectURL}${subject}.json?limit=${subjectResultLimit * 3}`);
+    subjectResults = await axios.get(
+      `${subjectURL}${subject}.json?limit=${subjectResultLimit * 3}`
+    );
     // Searches subject with limit of 1.5 * desired show limit, incase of missing covers
 
     // Make data easier to access
@@ -98,46 +99,24 @@ async function getSubject(subject, targetDiv){
 
     // Set Target Container
     const target = document.querySelector(`#${targetDiv}`);
-    console.log(`somethinghappened`);
-    
-    // Keeps track of how many are left to show, after skipping over missing cover entries
-    let toShow = subjectResultLimit;
-    for (let i = 0; i < toShow; i++) {
+
+    for (let i = 0; i < subjectResultLimit; i++) {
       let work = Math.round(subjectResults.length * Math.random());
       work = subjectResults.splice(work, 1);
       console.log(work);
-      if ((work[0].cover_edition_key != undefined)) {
-      target.insertAdjacentHTML(
-        `beforeend`, `<div class="result">
+      if (work[0].cover_edition_key != undefined) {
+        target.insertAdjacentHTML(
+          `beforeend`,
+          `<div class="result">
               <h3 class="resultTitle">${work[0].title}</h3>
               <h4 class="resultAuthor">Author: ${work[0].authors[0].name}</h4>
               <div class="coverContainer">
                 <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${work[0].cover_edition_key}.jpg" alt="Cover of ${work[0].title}">
               </div>
-            </div>`)
+            </div>`
+        );
+      }
     }
-  }
-    // for (work of subjectResults) {
-    //   if (toShow === 0) {
-    //     // Break the loop if we have shown our limit
-    //     break;
-    //   } else if ((work.cover_edition_key == undefined)) {
-    //    // Lets do nothing for this entry since cover is undefined
-    //   } else {
-    //     // adding entry to page
-    //   target.insertAdjacentHTML(
-    //   `beforeend`, `<div class="result">
-    //         <h3 class="resultTitle">${work.title}</h3>
-    //         <h4 class="resultAuthor">Author: ${work.authors[0].name}</h4>
-    //         <div class="coverContainer">
-    //           <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${work.cover_edition_key}.jpg" alt="Cover of ${work.title}">
-    //         </div>
-    //       </div>`)
-    //       // Since we displayed something, update to show count
-    //       toShow--;
-          
-    //   }
-    // }
   } catch (err) {
     console.log(`getsubject failed: ${err}`);
   }
