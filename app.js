@@ -4,6 +4,7 @@ const subjectURL = `https://openlibrary.org/subjects/`;
 const searchButton = document.querySelector(`#search_bar button`);
 const searchInput = document.querySelector(`#search_bar input`);
 const contentDiv = document.querySelector(`#search_field`);
+const autoFilled = document.querySelectorAll(`.autoFilled`);
 
 const subjectResultLimit = 8;
 
@@ -29,6 +30,10 @@ getSubject(subjects.f, `API1`);
 
 // Function that runs via button onclick="SearchBook()"
 async function SearchBook() {
+  for (filledDiv of autoFilled) {
+    filledDiv.innerHTML = ``;
+  }
+  
   // Sets searchTerms to the value of searchInput
   // searchInput was set to our text input field, the user input is the value
   searchTerms = searchInput.value;
