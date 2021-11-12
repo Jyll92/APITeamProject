@@ -1,35 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Team Four API Project">
-    <link rel="stylesheet" href="./style.css">
-    <title>To Be Named...</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Team Four API Project" />
+    <!-- CSS Links -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"/>
+    <link rel="stylesheet" href="./style.css" />
+    <title>The Book Nook</title>
+  </head>
+  <body>
     <!-- Header -->
-    <section id="header"></section>
-    
-    <!-- Search Bar -->
-    <section class="search">
-        <div id = "search_bar">
-            <input type="text" placeholder="Search for Books...">
-            <button onclick="SearchBook()">Search</button>
-        </div> 
+    <section id="header top">
+      <img src="Images/bookNook.png" alt="Book Nook header image" />
     </section>
 
-    <!-- Search Results -->
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-6" href="#top">The Book Nook</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >1st Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >2nd Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >3rd Link</a>
+            </li>
+          </ul>
+          <div id="search_bar">
+            <input type="text" placeholder="Search for Books..." />
+            <button onclick="SearchBook()">Search</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- API Auto Populating Fields -->
     <section class="results">
-        <div id="content"></div>
+      <div id="API1"></div>
+      <div id="API2"></div>
+      <div id="API3"></div>
+    </section>
+
+    <!-- Search Field Results -->
+    <section class="results">
+      <div id="search_field"></div>
     </section>
 
     <!-- Footer -->
-    <section id="footer"></section>
+    <section id="footer">
+      <img src="./Images/JAMCollab.png" alt="Jam Collab Icon" />
+      <p class="text-muted mb-0">
+        © 2021 |
+        <a href="https://www.jyllataru.com/" target="_blank">Jyll Wright</a>,
+        <a href="#" target="_blank">Ashley Ritchie</a>, &
+        <a href="https://www.maiannethornton.com/" target="_blank"
+          >Maianne Thornton</a>
+      </p>
+    </section>
 
+    <!-- JS Links -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script src="./axios/dist/axios.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> -->
     <script src="./app.js"></script>
-</body>
+  </body>
 </html>
