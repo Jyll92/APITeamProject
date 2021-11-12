@@ -1,6 +1,6 @@
 // Declaring Variables
 const URL = `https://openlibrary.org/search.json?q=`;
-const subjectURL = `http://openlibrary.org/subjects/`;
+const subjectURL = `https://openlibrary.org/subjects/`;
 const searchButton = document.querySelector(`#search_bar button`);
 const searchInput = document.querySelector(`#search_bar input`);
 const contentDiv = document.querySelector(`#search_field`);
@@ -25,8 +25,8 @@ let searchResults;
 
 // Run Function to fill our auto-divs
 getSubject(subjects.f, `API1`);
-getSubject(subjects.m, `API2`);
-getSubject(subjects.hl, `API3`);
+// getSubject(subjects.m, `API2`);
+// getSubject(subjects.h, `API3`);
 
 // Function that runs via button onclick="SearchBook()"
 async function SearchBook() {
@@ -90,7 +90,7 @@ async function SearchBook() {
 // Lets us fill a div by calling subject we want and the target container
 async function getSubject(subject, targetDiv){
   try {
-    subjectResults = await axios.get(`${subjectURL}${subject}.json?limit=${subjectResultLimit * 1.5}`);
+    subjectResults = await axios.get(`${subjectURL}${subject}.json?limit=${subjectResultLimit * 3}`);
     // Searches subject with limit of 1.5 * desired show limit, incase of missing covers
 
     // Make data easier to access
@@ -98,31 +98,46 @@ async function getSubject(subject, targetDiv){
 
     // Set Target Container
     const target = document.querySelector(`#${targetDiv}`);
+    console.log(`somethinghappened`);
     
     // Keeps track of how many are left to show, after skipping over missing cover entries
     let toShow = subjectResultLimit;
-
-    for (work of subjectResults) {
-      if (toShow === 0) {
-        // Break the loop if we have shown our limit
-        break;
-      } else if ((work.cover_edition_key == undefined)) {
-       // Lets do nothing for this entry since cover is undefined
-      } else {
-        // adding entry to page
+    for (let i = 0; i < toShow; i++) {
+      let work = Math.round(subjectResults.length * Math.random());
+      work = subjectResults.splice(work, 1);
+      console.log(work);
+      if ((work[0].cover_edition_key != undefined)) {
       target.insertAdjacentHTML(
-      `beforeend`, `<div class="result">
-            <h3 class="resultTitle">${work.title}</h3>
-            <h4 class="resultAuthor">Author: ${work.authors[0].name}</h4>
-            <div class="coverContainer">
-              <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${work.cover_edition_key}.jpg" alt="Cover of ${work.title}">
-            </div>
-          </div>`)
-          // Since we displayed something, update to show count
-          toShow--;
-          
-      }
+        `beforeend`, `<div class="result">
+              <h3 class="resultTitle">${work[0].title}</h3>
+              <h4 class="resultAuthor">Author: ${work[0].authors[0].name}</h4>
+              <div class="coverContainer">
+                <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${work[0].cover_edition_key}.jpg" alt="Cover of ${work[0].title}">
+              </div>
+            </div>`)
     }
+  }
+    // for (work of subjectResults) {
+    //   if (toShow === 0) {
+    //     // Break the loop if we have shown our limit
+    //     break;
+    //   } else if ((work.cover_edition_key == undefined)) {
+    //    // Lets do nothing for this entry since cover is undefined
+    //   } else {
+    //     // adding entry to page
+    //   target.insertAdjacentHTML(
+    //   `beforeend`, `<div class="result">
+    //         <h3 class="resultTitle">${work.title}</h3>
+    //         <h4 class="resultAuthor">Author: ${work.authors[0].name}</h4>
+    //         <div class="coverContainer">
+    //           <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${work.cover_edition_key}.jpg" alt="Cover of ${work.title}">
+    //         </div>
+    //       </div>`)
+    //       // Since we displayed something, update to show count
+    //       toShow--;
+          
+    //   }
+    // }
   } catch (err) {
     console.log(`getsubject failed: ${err}`);
   }
