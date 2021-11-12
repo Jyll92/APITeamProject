@@ -65,7 +65,7 @@ async function SearchBook() {
     // added && i < 20 to also not display more than 20 results at once.
     for (let i = 0; i < searchResults.length && i < 20; i++) {
       // First, I check if it has an associated cover or not, to know if I can display the image
-      if ((searchResults[i].cover_edition_key = !undefined)) {
+      if ((searchResults[i].cover_edition_key != undefined)) {
         // inserAdjacentHTML allows us to add html to the page.
         // by using contentDiv.insertAdjacentHTML we can add desired html to the page. In this case we target `beforeend` to insert each new iteration before the ending tag.
         contentDiv.insertAdjacentHTML(
@@ -106,7 +106,7 @@ async function getSubject(subject, targetDiv){
       if (toShow === 0) {
         // Break the loop if we have shown our limit
         break;
-      } else if ((work.cover_edition_key == !undefined)) {
+      } else if ((work.cover_edition_key == undefined)) {
        // Lets do nothing for this entry since cover is undefined
       } else {
         // adding entry to page
