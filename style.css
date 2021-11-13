@@ -126,3 +126,7 @@ h2.shrink {
 #autofillResults.hidden {
     display: none;
 }
+
+#searchResults.hidden {
+    display: none;
+}

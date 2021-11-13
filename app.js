@@ -6,6 +6,8 @@ const searchInput = document.querySelector(`#search_bar input`);
 const contentDiv = document.querySelector(`#search_field`);
 const autoFilled = document.querySelectorAll(`.autoFilled`);
 let fadeBack = document.querySelectorAll(`.fade`);
+const autofillResults = document.querySelector(`#autofillResults`);
+const searchResultsDiv = document.querySelector(`#searchResults`);
 
 const subjectResultLimit = 8;
 
@@ -37,8 +39,8 @@ async function SearchBook() {
   // for (filledDiv of autoFilled) {
   //   filledDiv.innerHTML = ``;
   // }
-  const test2 = document.querySelector(`#autofillResults`);
-  test2.classList.add(`hidden`);
+  autofillResults.classList.add(`hidden`);
+  searchResultsDiv.classList.remove(`hidden`);
   // Sets searchTerms to the value of searchInput
   // searchInput was set to our text input field, the user input is the value
   searchTerms = searchInput.value;
@@ -144,6 +146,9 @@ async function getSubject(subject, targetDiv) {
 }
 
 async function autoPopulate(){
+  
+  autofillResults.classList.remove(`hidden`);
+  searchResultsDiv.classList.add(`hidden`);
   // Run Function to fill our auto-divs
   await getSubject(subjects.c, `crime`);
     fadeIn();
