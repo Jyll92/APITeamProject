@@ -179,7 +179,7 @@ async function autoPopulate(){
   searchResultsDiv.classList.add(`hidden`);
   // Run Function to fill our auto-divs
   await getSubject(subjects.c, `crime`);
-    fadeIn();
+    // fadeIn();
   await getSubject(subjects.f, `fantasy`);
   await fadeIn();
   await getSubject(subjects.h, `health`);
