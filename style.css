@@ -4,8 +4,10 @@
     padding: 0;
 }
 .coverContainer {
-    height: 20vw;
+    height: 18vw;
     width: 10vw;
+    display: flex;
+    justify-content: center;
 }
 .resultCover {
     max-width: 100%;
@@ -29,9 +31,11 @@
 
 .resultTitle {
     font-size: 1rem;
+    text-align: center;
 }
 .resultAuthor {
     font-size: .8rem;
+    text-align: center;
 }
 
 /* The individual book titles, authors, & covers */

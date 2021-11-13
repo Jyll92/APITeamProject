@@ -145,23 +145,17 @@ async function getSubject(subject, targetDiv) {
 async function autoPopulate(){
   // Run Function to fill our auto-divs
   await getSubject(subjects.c, `crime`);
-  fadeIn();
+    fadeIn();
   await getSubject(subjects.f, `fantasy`);
-  fadeIn();
   await getSubject(subjects.h, `health`);
-  fadeIn();
   await getSubject(subjects.hf, `historical_fiction`);
-  fadeIn();
   await getSubject(subjects.h, `horror`);
-  fadeIn();
   await getSubject(subjects.m, `mystery`);
-  fadeIn();
   await getSubject(subjects.r, `romance`);
-  fadeIn();
   await getSubject(subjects.sf, `science_fiction`);
-  fadeIn();
   await getSubject(subjects.t, `thriller`);
   fadeIn();
+
 }
 
 function fadeIn() {
