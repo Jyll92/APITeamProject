@@ -182,7 +182,7 @@ async function autoPopulate(){
     // fadeIn();
   await getSubject(subjects.f, `fantasy`);
   await fadeIn();
-  await getSubject(subjects.h, `health`);
+  await getSubject(subjects.hl, `health`);
   await getSubject(subjects.hf, `historical_fiction`);
   await getSubject(subjects.h, `horror`);
   await fadeIn();
