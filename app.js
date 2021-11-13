@@ -42,17 +42,20 @@ async function SearchBook() {
   autofillResults.classList.add(`hidden`);
   searchResultsDiv.classList.remove(`hidden`);
 
-  contentDiv.innerHTML = `<h1>Loading Results .</h1>`;
+  contentDiv.innerHTML = `<h1>Loading Results</h1>`;
   const loadAnim = document.querySelector(`#searchResults h1`)
   const loadingResults = setInterval(() => {
-    loadAnim.innerText = `Loading Results .`;
+    loadAnim.innerText = `Loading Results`;
     setTimeout(() => {
-      loadAnim.innerText = `Loading Results ..`;
+      loadAnim.innerText = `Loading Results .`;
     }, 200);
     setTimeout(() => {
-      loadAnim.innerText = `Loading Results ...`;
+      loadAnim.innerText = `Loading Results ..`;
     }, 400);
-  }, 600);
+    setTimeout(() => {
+      loadAnim.innerText = `Loading Results ...`;
+    }, 600);
+  }, 800);
   // Sets searchTerms to the value of searchInput
   // searchInput was set to our text input field, the user input is the value
   searchTerms = searchInput.value;
