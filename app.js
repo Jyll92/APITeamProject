@@ -181,18 +181,21 @@ async function autoPopulate(){
   await getSubject(subjects.c, `crime`);
     fadeIn();
   await getSubject(subjects.f, `fantasy`);
+  await fadeIn();
   await getSubject(subjects.h, `health`);
   await getSubject(subjects.hf, `historical_fiction`);
   await getSubject(subjects.h, `horror`);
+  await fadeIn();
   await getSubject(subjects.m, `mystery`);
   await getSubject(subjects.r, `romance`);
+  await fadeIn();
   await getSubject(subjects.sf, `science_fiction`);
   await getSubject(subjects.t, `thriller`);
   fadeIn();
 
 }
 
-function fadeIn() {
+async function fadeIn() {
    fadeBack = document.querySelectorAll(`.fade`);
   for (let i = 0; i < fadeBack.length; i++) {
     wait(i);
