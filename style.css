@@ -3,9 +3,19 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    background-color: rgb(212, 198, 188);
+}
+
+#navbar {
+    background-color: rgb(228, 213, 202)!important;
+}
 .coverContainer {
-    max-height: 300px;
-    max-width: 150px;
+    height: 18vw;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
 }
 .resultCover {
     max-width: 100%;
@@ -18,13 +28,22 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-auto-rows: 100px; */
     /* width: 175px; */
-    padding: 20px;
+    /* padding: 20px; */
     margin: 10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-items: center;
-    /* justify-content:space-around; */
+    
+}
+
+.resultTitle {
+    font-size: 1rem;
+    text-align: center;
+}
+.resultAuthor {
+    font-size: .8rem;
+    text-align: center;
 }
 
 /* The individual book titles, authors, & covers */
@@ -33,7 +52,8 @@
     flex-wrap: wrap;
     flex-direction: row;
     border: 2px solid #bfbfc0;
-
+    background-color: rgb(228, 213, 202);
+    margin: 15px;
     /* margin: 10px 10px 500px 10px; */
     /* align-content: center; */
     /* justify-content: center; */
@@ -51,11 +71,12 @@ div.result{
 .result{
     display: flex;
     flex-direction: column;
-    padding: 5px;
+    padding: 0 .65vw;
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
-    
+    transition: all .4s cubic-bezier(.86,.25,.74,.31);
+    width: 12vw;
 }
 
 /* API auto-filled fields */
@@ -66,7 +87,10 @@ div.result{
     border: 2px solid #bfbfc0;
     display: flex;
     align-items: center;
-    /* justify-content:space-around; */
+    justify-content:space-between;
+    height: min-content;
+    margin: 10px 4px;
+    background-color: rgb(228, 213, 202);
 }
 
 /* Styling for Subject Headings */
@@ -74,12 +98,47 @@ h2 {
     writing-mode: vertical-lr;
     text-orientation: upright;
     text-transform: uppercase;
+    border-right: 1px solid #bfbfc0;
+    margin-right: 12px;
+    /* height: 30vw; */
+    text-align: center;
+    width: 3vw;
+}
+
+h2.shrink {
+    font-size: 1rem;
+    justify-content: right;
+    padding-left: .5vw;
 }
 
 #footer {
-    background-color: rgba(194, 178, 170, .5);
+    /* background-color: rgba(194, 178, 170, .5); */
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
+.fade {
+    filter: blur(14px) grayscale(1);
+    opacity: 0;
+}
+
+#autofillResults.hidden {
+    display: none;
+}
+
+#searchResults.hidden {
+    display: none;
+}
+
+#loadingAnim {
+    padding: 10vw;
+}
+
+.noResults h2 {
+    writing-mode: initial;
+    width: initial;
+    height: initial;
+    padding: 20px;
+    border: none;
+}
