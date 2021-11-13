@@ -5,6 +5,7 @@ const searchButton = document.querySelector(`#search_bar button`);
 const searchInput = document.querySelector(`#search_bar input`);
 const contentDiv = document.querySelector(`#search_field`);
 const autoFilled = document.querySelectorAll(`.autoFilled`);
+let fadeBack = document.querySelectorAll(`.fade`);
 
 const subjectResultLimit = 8;
 
@@ -23,23 +24,21 @@ const subjects = {
 let searchTerms;
 let searchResults;
 
-// Run Function to fill our auto-divs
-getSubject(subjects.f, `API1`);
-// getSubject(subjects.m, `API2`);
-// getSubject(subjects.h, `API3`);
+autoPopulate();
 
 searchInput.addEventListener(`keyup`, (event) => {
   if (event.keyCode === 13) {
     SearchBook();
-}
+  }
 })
 
 // Function that runs via button onclick="SearchBook()"
 async function SearchBook() {
-  for (filledDiv of autoFilled) {
-    filledDiv.innerHTML = ``;
-  }
-  
+  // for (filledDiv of autoFilled) {
+  //   filledDiv.innerHTML = ``;
+  // }
+  const test2 = document.querySelector(`#autofillResults`);
+  test2.classList.add(`hidden`);
   // Sets searchTerms to the value of searchInput
   // searchInput was set to our text input field, the user input is the value
   searchTerms = searchInput.value;
@@ -101,7 +100,7 @@ async function SearchBook() {
 async function getSubject(subject, targetDiv) {
   try {
     subjectResults = await axios.get(
-      `${subjectURL}${subject}.json?limit=${subjectResultLimit * 3}`
+      `${subjectURL}${subject}.json?limit=${subjectResultLimit * 4}`
     );
     // Searches subject with limit of 1.5 * desired show limit, incase of missing covers
 
@@ -114,21 +113,66 @@ async function getSubject(subject, targetDiv) {
     for (let i = 0; i < subjectResultLimit; i++) {
       let work = Math.round(subjectResults.length * Math.random());
       work = subjectResults.splice(work, 1);
-      console.log(work);
-      if (work[0].cover_edition_key != undefined) {
-        target.insertAdjacentHTML(
-          `beforeend`,
-          `<div class="result">
-              <h3 class="resultTitle">${work[0].title}</h3>
-              <h4 class="resultAuthor">Author: ${work[0].authors[0].name}</h4>
-              <div class="coverContainer">
-                <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${work[0].cover_edition_key}.jpg" alt="Cover of ${work[0].title}">
-              </div>
-            </div>`
-        );
+      
+      while (work.length == 0) {
+        console.log(`it was empty`)
+        work = Math.round(subjectResults.length * Math.random());
+        work = subjectResults.splice(work, 1);
       }
+
+        while (work[0].cover_edition_key == undefined || work[0].title === `Works (Adventures of Sherlock Holmes / Case-Book of Sherlock Holmes / His Last Bow / Hound of the Baskervilles / Memoirs of Sherlock Holmes / Return of Sherlock Holmes / Sign of Four / Study in Scarlet / Valley of Fear)`) {
+        work = Math.round(subjectResults.length * Math.random());
+        work = subjectResults.splice(work, 1);
+        };
+
+          target.insertAdjacentHTML(
+            `beforeend`,
+            `<div class="result fade">
+                <h3 class="resultTitle">${work[0].title}</h3>
+                <h4 class="resultAuthor">Author: ${work[0].authors[0].name}</h4>
+                <div class="coverContainer">
+                  <img class="resultCover" src="https://covers.openlibrary.org/b/olid/${work[0].cover_edition_key}.jpg" alt="Cover of ${work[0].title}">
+                </div>
+              </div>`
+          );
     }
+
   } catch (err) {
     console.log(`getsubject failed: ${err}`);
   }
+}
+
+async function autoPopulate(){
+  // Run Function to fill our auto-divs
+  await getSubject(subjects.c, `crime`);
+  fadeIn();
+  await getSubject(subjects.f, `fantasy`);
+  fadeIn();
+  await getSubject(subjects.h, `health`);
+  fadeIn();
+  await getSubject(subjects.hf, `historical_fiction`);
+  fadeIn();
+  await getSubject(subjects.h, `horror`);
+  fadeIn();
+  await getSubject(subjects.m, `mystery`);
+  fadeIn();
+  await getSubject(subjects.r, `romance`);
+  fadeIn();
+  await getSubject(subjects.sf, `science_fiction`);
+  fadeIn();
+  await getSubject(subjects.t, `thriller`);
+  fadeIn();
+}
+
+function fadeIn() {
+   fadeBack = document.querySelectorAll(`.fade`);
+  for (let i = 0; i < fadeBack.length; i++) {
+    wait(i);
+  }
+}
+
+function wait(i) {
+  setTimeout(() => {
+    fadeBack[i].classList.remove(`fade`);
+  }, 220 * i)
 }
