@@ -41,6 +41,18 @@ async function SearchBook() {
   // }
   autofillResults.classList.add(`hidden`);
   searchResultsDiv.classList.remove(`hidden`);
+
+  contentDiv.innerHTML = `<h1>Loading Results .</h1>`;
+  const loadAnim = document.querySelector(`#searchResults h1`)
+  const loadingResults = setInterval(() => {
+    loadAnim.innerText = `Loading Results .`;
+    setTimeout(() => {
+      loadAnim.innerText = `Loading Results ..`;
+    }, 200);
+    setTimeout(() => {
+      loadAnim.innerText = `Loading Results ...`;
+    }, 400);
+  }, 600);
   // Sets searchTerms to the value of searchInput
   // searchInput was set to our text input field, the user input is the value
   searchTerms = searchInput.value;
@@ -51,6 +63,8 @@ async function SearchBook() {
     // Try searching by combining URL with the user set searchTerms
     searchResults = await axios.get(`${URL}${searchTerms}`);
     console.log(searchResults.data);
+    clearInterval(loadingResults);
+    // loadingAnim.remove();
 
     // if the get() is successful, we should clear out old results in preperation for displaying something new.
     // This clears out any previous content in the space we plan to use
