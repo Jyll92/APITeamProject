@@ -115,7 +115,7 @@ async function getSubject(subject, targetDiv) {
       work = subjectResults.splice(work, 1);
       
       while (work.length == 0) {
-        console.log(`it was empty`)
+        // console.log(`it was empty`)
         work = Math.round(subjectResults.length * Math.random());
         work = subjectResults.splice(work, 1);
       }
