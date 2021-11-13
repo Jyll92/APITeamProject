@@ -131,7 +131,6 @@ h2.shrink {
     display: none;
 }
 
-#searchResults h1 {
-    padding: 20px;
-    text-align: center;
+#loadingAnim {
+    padding: 10vw;
 }

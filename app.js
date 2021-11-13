@@ -34,6 +34,17 @@ searchInput.addEventListener(`keyup`, (event) => {
   }
 })
 
+const homeButton = document.querySelector(`a.navbar-brand`);
+homeButton.addEventListener(`click`, ()=> {
+  home();
+});
+
+function home() {
+  autofillResults.classList.remove(`hidden`);
+  searchResultsDiv.classList.add(`hidden`);
+}
+
+
 // Function that runs via button onclick="SearchBook()"
 async function SearchBook() {
   // for (filledDiv of autoFilled) {
@@ -42,8 +53,8 @@ async function SearchBook() {
   autofillResults.classList.add(`hidden`);
   searchResultsDiv.classList.remove(`hidden`);
 
-  contentDiv.innerHTML = `<h1>Loading Results</h1>`;
-  const loadAnim = document.querySelector(`#searchResults h1`)
+  contentDiv.innerHTML = `<h1 id="loadingAnim">Loading Results</h1>`;
+  const loadAnim = document.querySelector(`#loadingAnim`)
   const loadingResults = setInterval(() => {
     loadAnim.innerText = `Loading Results`;
     setTimeout(() => {
