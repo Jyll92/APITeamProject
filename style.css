@@ -134,3 +134,11 @@ h2.shrink {
 #loadingAnim {
     padding: 10vw;
 }
+
+.noResults h2 {
+    writing-mode: initial;
+    width: initial;
+    height: initial;
+    padding: 20px;
+    border: none;
+}

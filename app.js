@@ -76,7 +76,7 @@ async function SearchBook() {
   try {
     // Try searching by combining URL with the user set searchTerms
     searchResults = await axios.get(`${URL}${searchTerms}`);
-    console.log(searchResults.data);
+    // console.log(searchResults.data);
     clearInterval(loadingResults);
     // loadingAnim.remove();
 
@@ -89,7 +89,7 @@ async function SearchBook() {
     if (searchResults.data.numFound == 0) {
       // Add desired html and message
       contentDiv.innerHTML = `<div class="noResults">
-      <h2>Sorry, no results found for your search of "${searchTerms}".</2h>
+      <h2>Sorry, no results found for your search of: "${searchTerms}"</2h>
       </div>`;
       return;
     }
@@ -97,7 +97,7 @@ async function SearchBook() {
     // set searchResults to searchResults.data, because thats how axios gets us back our info. This just makes it easier to work with.
     // also added .docs, because when I ran a console.log(searchResults.data), I observed the results are in an array, under the key of "docs"
     searchResults = searchResults.data.docs;
-    console.log(searchResults);
+    // console.log(searchResults);
 
     // Now we have to go through the array and display each result
     // Target each result of the array with a for loop
