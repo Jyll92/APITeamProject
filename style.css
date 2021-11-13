@@ -52,7 +52,8 @@ body {
     flex-wrap: wrap;
     flex-direction: row;
     border: 2px solid #bfbfc0;
-
+    background-color: rgb(228, 213, 202);
+    margin: 15px;
     /* margin: 10px 10px 500px 10px; */
     /* align-content: center; */
     /* justify-content: center; */
@@ -75,7 +76,7 @@ div.result{
     align-content: center;
     align-items: center;
     transition: all .4s cubic-bezier(.86,.25,.74,.31);
-    max-width: 22vw;
+    width: 12vw;
 }
 
 /* API auto-filled fields */

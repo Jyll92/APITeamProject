@@ -79,7 +79,7 @@ async function SearchBook() {
         // by using contentDiv.insertAdjacentHTML we can add desired html to the page. In this case we target `beforeend` to insert each new iteration before the ending tag.
         contentDiv.insertAdjacentHTML(
           `beforeend`,
-          `<div class="result">
+          `<div class="result fade">
             <h3 class="resultTitle">${searchResults[i].title}</h3>
             <h4 class="resultAuthor">Author: ${searchResults[i].author_name}</h4>
             <div class="coverContainer">
@@ -90,6 +90,7 @@ async function SearchBook() {
         // The template literal allows us to add the html and text at once
       }
     }
+    fadeIn();
   } catch (err) {
     // This is meant to tell us what went wrong, if the code in our try{} doesn't run successfully.
     console.log(`Search Failed: ${err}`);
